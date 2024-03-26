@@ -164,7 +164,8 @@ class App extends Component {
        ?<GetQuote  id={this.state.user.id} namefull={this.state.user.fullname}  ad1={this.state.user.address1} onRouteChange={this.onRouteChange}/>
        :this.state.route ==='QuoteHistory'
        ?<QuoteHistory
-       clientName={this.state.quoteHistory.clientName}
+       id={this.state.user.id}
+       clientName={this.state.user.name}
        gallonsRequested={this.state.quoteHistory.gallonsRequested}
        deliveryAddress={this.state.quoteHistory.deliveryAddress}
        deliveryDate={this.state.quoteHistory. deliveryDate}

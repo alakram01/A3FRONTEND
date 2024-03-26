@@ -1,13 +1,13 @@
- import React from 'react';
-import GetQuoteValidation from './GetQteValidations'
+import React from "react";
+import GetQuoteValidation from "./GetQteValidations";
 class GetQuote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gallonsRequested: '',
+      gallonsRequested: "",
       errors: {},
-      deliveryDate: '',
-      deliveryAddress: '' // Added state variable for delivery address
+      deliveryDate: "",
+      deliveryAddress: "", // Added state variable for delivery address
     };
   }
 
@@ -20,32 +20,31 @@ class GetQuote extends React.Component {
     event.preventDefault();
     const errors = GetQuoteValidation(this.state); // Call Validation function with current state
     this.setState({ errors }); // Update errors state
-    if (Object.values(errors).every(error => error === "")) {
-    const { gallonsRequested, deliveryDate, deliveryAddress } = this.state;
-    const { id, namefull,ad1 } = this.props;
-        fetch('http://localhost:3000/GetQuote', {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id:id,
-                clientName: namefull,
-                gallonsRequested: gallonsRequested,
-                deliveryDate:  deliveryDate,
-                deliveryAddress: ad1
-            })
+    if (Object.values(errors).every((error) => error === "")) {
+      const { gallonsRequested, deliveryDate, deliveryAddress } = this.state;
+      const { id, namefull, ad1 } = this.props;
+      fetch("http://localhost:3000/GetQuote", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          clientName: namefull,
+          gallonsRequested: gallonsRequested,
+          deliveryDate: deliveryDate,
+          deliveryAddress: ad1,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.props.onRouteChange("QuoteHistory");
         })
-        .then(response => response.json())
-        .then(data => {
-            
-            this.props.onRouteChange('home');
-        })
-        .catch(error => {
-            console.error('Error fetching quote:', error);
+        .catch((error) => {
+          console.error("Error fetching quote:", error);
         });
     }
-        
+
     /*
     event.preventDefault();
     // Handle form submission logic here
@@ -56,16 +55,13 @@ class GetQuote extends React.Component {
   render() {
     const { errors } = this.state;
     const { gallonsRequested, deliveryDate, deliveryAddress } = this.state;
-const{ad1} =this.props;
+    const { ad1 } = this.props;
     return (
       <div>
         <h1>GET A NEW QUOTE</h1>
-      
-          
-          
-        
-        <div className='center'>
-          <form onSubmit={this.onSubmitForm} >
+
+        <div className="center">
+          <form onSubmit={this.onSubmitForm}>
             <label htmlFor="gallonsRequested">Gallons Requested:</label>
             <input
               type="number"
@@ -75,9 +71,10 @@ const{ad1} =this.props;
               onChange={this.handleInputChange}
               required
             />
-             {errors.gallonsRequested && <p className="error">{errors.gallonsRequested}</p>}{" "}
-                {/* Display gallon error */} 
-
+            {errors.gallonsRequested && (
+              <p className="error">{errors.gallonsRequested}</p>
+            )}{" "}
+            {/* Display gallon error */}
             <div>
               <label>Delivery Address:</label>
               <input
@@ -89,9 +86,7 @@ const{ad1} =this.props;
                 onChange={this.handleInputChange}
                 required
               />
-               
             </div>
-
             <div>
               <label>Delivery Date:</label>
               <input
@@ -99,18 +94,19 @@ const{ad1} =this.props;
                 id="deliveryDate"
                 name="deliveryDate"
                 value={deliveryDate}
-                
                 onChange={this.handleInputChange}
                 required
               />
-               {errors.deliveryDate && <p className="error">{errors.deliveryDate}</p>}{" "}
-                {/* Display email error */} 
+              {errors.deliveryDate && (
+                <p className="error">{errors.deliveryDate}</p>
+              )}{" "}
+              {/* Display email error */}
             </div>
-
-            <button onClick={this.onSubmitSignIn} type="submit">Submit</button>
+            <button onClick={this.onSubmitSignIn} type="submit">
+              Submit
+            </button>
           </form>
-       
-          </div>
+        </div>
       </div>
     );
   }
