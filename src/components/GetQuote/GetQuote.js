@@ -56,6 +56,7 @@ class GetQuote extends React.Component {
     const { errors } = this.state;
     const { gallonsRequested, deliveryDate, deliveryAddress } = this.state;
     const { ad1 } = this.props;
+    const today = new Date();
     return (
       <div>
         <h1>GET A NEW QUOTE</h1>
@@ -69,6 +70,7 @@ class GetQuote extends React.Component {
               name="gallonsRequested"
               value={gallonsRequested}
               onChange={this.handleInputChange}
+              min={1}
               required
             />
             {errors.gallonsRequested && (
@@ -89,12 +91,16 @@ class GetQuote extends React.Component {
             </div>
             <div>
               <label>Delivery Date:</label>
+              
               <input
                 type="date"
                 id="deliveryDate"
                 name="deliveryDate"
                 value={deliveryDate}
                 onChange={this.handleInputChange}
+                
+                min = {today}
+                //min='2024-03-29'
                 required
               />
               {errors.deliveryDate && (

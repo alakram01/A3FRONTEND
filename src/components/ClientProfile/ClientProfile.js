@@ -116,10 +116,10 @@ import ProfileValidation from './ProfileValidation';
       .then(data =>{
         if(data.id){
 
-          console.log(data.length);
-          console.log(data);
-          console.log(name);
-          console.log(add1);
+          // console.log(data.length);
+          // console.log(data);
+          // console.log(name);
+          // console.log(add1);
           this.props.loadUser(data)
           this.props.onRouteChange('home');
         }
