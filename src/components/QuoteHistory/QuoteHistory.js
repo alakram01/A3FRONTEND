@@ -56,12 +56,12 @@ class QuoteHistory extends React.Component {
               <tbody>
                 {quoteHistory.map((qoute) => (
                   <tr className="br3  bg-light-pink">
-                    <td>{qoute.clientName}</td>
-                    <td>{qoute.gallonsRequested}</td>
-                    <td>{qoute.deliveryAddress}</td>
-                    <td>{qoute.deliveryDate}</td>
-                    <td> $ {qoute.pricePerGallon}</td>
-                    <td>$ {qoute.amountDue}</td>
+                    <td>{qoute.client_name}</td>
+                    <td>{qoute.gallons_requested}</td>
+                    <td>{qoute.delivery_address}</td>
+                    <td>{qoute.delivery_date.substr(0,10)}</td>
+                    <td> $ {qoute.price_per_gallon}</td>
+                    <td>$ {qoute.amount_due}</td>
                   </tr>
                 ))}
               </tbody>
