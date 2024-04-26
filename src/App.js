@@ -43,7 +43,6 @@ class App extends Component {
         deliveryDate: '20-10-4024',
         pricePergallon:999,
         amountDue: 999
-
       }
     }
   }
@@ -112,7 +111,7 @@ class App extends Component {
      else if (route === 'home') {
       this.setState({isSignedIn: true})
     }else if (route === 'ClientProfile') {
-      this.setState({isSignedIn: true})
+      this.setState({isSignedIn: false})
     }
 
     this.setState({route: route});
@@ -125,7 +124,7 @@ class App extends Component {
      
 
 
-     <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
+     <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} route={this.state.route}/>
      <div>
       
       {console.log("Add1 prop in App.js:",

@@ -2,9 +2,8 @@ import React from "react";
 import './Navigation.css';
 
 
-const Navigation =({onRouteChange, isSignedIn}) =>{
 
-
+const Navigation =({onRouteChange, isSignedIn, route}) =>{
 
 
 if(isSignedIn){
@@ -29,12 +28,33 @@ if(isSignedIn){
 
 
 );
-}else{
+}
+else if((!isSignedIn) && route==="ClientProfile"){
+    return(
+        <nav className = "">
+    <ul className="logo">
+    
+    <li className ="lo f3 link dim black pa3 pointer fw9"><a>Coogs Fuel Portal </a></li>
+    
+    <ul className="logo push f3 link dim black underline pa3 pointer fw9 ">
+    
+    
+    
+        
+    
+    </ul>
+    </ul>
+    </nav>
+    
+    
+    );
+}
+else{
 return(
     <nav className = "">
 <ul className="logo">
 
-<li className ="lo f3 link dim black pa3 pointer fw9"><a onClick={()=> onRouteChange('home')} >Coogs Fuel Portal </a></li>
+<li className ="lo f3 link dim black pa3 pointer fw9"><a>Coogs Fuel Portal </a></li>
 
 <ul className="logo push f3 link dim black underline pa3 pointer fw9 ">
 

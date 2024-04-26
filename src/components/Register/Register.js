@@ -56,6 +56,7 @@ class Register extends React.Component {
       .then(user =>{
         if(user === 'Error logging in' || user ==='User not found in database'){
           this.Problem();
+          
           this.props.onRouteChange('register');
         }
         else{
@@ -63,7 +64,8 @@ class Register extends React.Component {
           console.log(user);
           this.props.loadUser(user)
           this.props.onRouteChange('ClientProfile');
-          const {name,add1 } = this.props;
+          const {id,name,add1 } = this.props;
+          console.log(id);
           console.log(name);
           console.log(add1);
         }
